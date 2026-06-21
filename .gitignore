@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Frontend / Tauri build outputs
+dist/
+src-tauri/target/
+*.exe
+*.msi
+*.pdb
+
+# Local runtime data.
+# WorkRecord stores user config/history in C:\workrecord by default.
+settings.json
+data/
+logs/
+
+# Local debug / generated inspection files
+_icon_check/
+素材/
+target-exe-associated-icon.*
+*_size_check.png
+
+# Environment / temporary files
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+*.bak
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local documentation drafts not published
+docs/

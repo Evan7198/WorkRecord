@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "WorkRecord",
+  "version": "0.1.0",
+  "identifier": "com.workrecord.desktop",
+  "build": {
+    "beforeDevCommand": "npm run vite:dev",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeBuildCommand": "npm run vite:build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "WorkRecord",
+        "width": 1180,
+        "height": 780,
+        "minWidth": 980,
+        "minHeight": 640,
+        "center": true,
+        "resizable": true,
+        "visible": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/workrecord_icon.ico",
+      "icons/icon.ico",
+      "icons/workrecord_logo_32.png",
+      "icons/workrecord_logo_128.png",
+      "icons/workrecord_logo_256.png"
+    ],
+    "windows": {
+      "nsis": {
+        "installerIcon": "icons/workrecord_icon.ico",
+        "uninstallerIcon": "icons/workrecord_icon.ico"
+      }
+    }
+  }
+}

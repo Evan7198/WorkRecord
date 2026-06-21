@@ -1,0 +1,31 @@
+{
+  "name": "workrecord-tauri",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "vite:build": "vite build",
+    "vite:dev": "vite --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.11.0",
+    "@vitejs/plugin-react": "^5.1.1",
+    "framer-motion": "^12.23.26",
+    "lucide-react": "^0.561.0",
+    "onnxruntime-web": "^1.27.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "recharts": "^3.5.1",
+    "vite": "^7.2.7"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.11.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3"
+  },
+  "description": "A Tauri desktop app for work-time tracking, YOLO presence detection, reminders, and history statistics.",
+  "license": "AGPL-3.0-only"
+}
