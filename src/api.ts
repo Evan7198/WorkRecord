@@ -50,6 +50,7 @@ export type AppSettings = {
   theme_mode: string;
   language: string;
   start_minimized: boolean;
+  close_to_tray: boolean;
   autostart: boolean;
   sound_enabled: boolean;
   sound_name: string;

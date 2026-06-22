@@ -609,6 +609,8 @@ const EN_TEXT: Record<string, string> = {
   "应用设置": "App settings",
   "启动后最小化到托盘": "Start minimized to tray",
   "关闭后，启动时直接显示主窗口。": "When off, show the main window on startup.",
+  "关闭窗口时最小化到托盘": "Minimize to tray when closing",
+  "关闭后，点击窗口关闭按钮会直接退出程序。": "When off, clicking the window close button exits the app.",
   "开机启动": "Start on boot",
   "跟随 Windows 登录自动启动。": "Start automatically after Windows login.",
   "主题": "Theme",
@@ -2982,6 +2984,12 @@ function AppPreferencesCard({
           label="启动后最小化到托盘"
           description="关闭后，启动时直接显示主窗口。"
           onChange={(checked) => saveSettings({ ...settings, start_minimized: checked })}
+        />
+        <SwitchControl
+          checked={settings.close_to_tray}
+          label="关闭窗口时最小化到托盘"
+          description="关闭后，点击窗口关闭按钮会直接退出程序。"
+          onChange={(checked) => saveSettings({ ...settings, close_to_tray: checked })}
         />
         <SwitchControl
           checked={settings.autostart}

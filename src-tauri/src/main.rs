@@ -20,7 +20,7 @@ use storage::Storage;
 use tauri::image::Image;
 use tauri::menu::{Menu, MenuItem};
 use tauri::tray::TrayIconBuilder;
-use tauri::{Manager, State};
+use tauri::{Manager, State, WindowEvent};
 
 #[cfg(windows)]
 use std::os::windows::process::CommandExt;
@@ -761,6 +761,38 @@ fn setup_tray(app: &tauri::App) -> tauri::Result<()> {
     Ok(())
 }
 
+fn close_to_tray_enabled(app: &tauri::AppHandle) -> bool {
+    app.try_state::<AppState>()
+        .and_then(|state| {
+            state
+                .storage
+                .lock()
+                .ok()
+                .and_then(|storage| storage.load_settings().ok())
+        })
+        .map(|settings| settings.close_to_tray)
+        .unwrap_or(true)
+}
+
+fn setup_close_to_tray(app: &tauri::App) -> tauri::Result<()> {
+    let Some(window) = app.get_webview_window("main") else {
+        return Ok(());
+    };
+
+    let app_handle = app.handle().clone();
+    let window_to_hide = window.clone();
+    window.on_window_event(move |event| {
+        if let WindowEvent::CloseRequested { api, .. } = event {
+            if close_to_tray_enabled(&app_handle) {
+                api.prevent_close();
+                let _ = window_to_hide.hide();
+            }
+        }
+    });
+
+    Ok(())
+}
+
 fn setup_initial_window_visibility(app: &tauri::App) -> tauri::Result<()> {
     let Some(window) = app.get_webview_window("main") else {
         return Ok(());
@@ -804,6 +836,7 @@ fn main() {
         .setup(|app| {
             setup_window_icon(app)?;
             setup_tray(app)?;
+            setup_close_to_tray(app)?;
             setup_initial_window_visibility(app)?;
             Ok(())
         })
